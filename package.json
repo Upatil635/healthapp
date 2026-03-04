@@ -1,0 +1,91 @@
+{
+  "name": "health-schedule-reminder",
+  "displayName": "Health & Schedule Reminder",
+  "description": "Tea breaks, water, stretch, meeting alerts with alarm and sidebar!",
+  "version": "3.0.0",
+  "publisher": "umeshbhagvanpatil",
+  "repository": "https://github.com/umesh/health-reminder",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "healthReminderContainer",
+          "title": "Health Reminder",
+          "icon": "media/heart.svg"
+        }
+      ]
+    },
+    "views": {
+      "healthReminderContainer": [
+        {
+          "type": "webview",
+          "id": "healthReminder.sidebar",
+          "name": "Health & Schedule"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "reminder.start",
+        "title": "🟢 Start Health Reminders"
+      },
+      {
+        "command": "reminder.stop",
+        "title": "🔴 Stop Health Reminders"
+      },
+      {
+        "command": "reminder.addMeeting",
+        "title": "📅 Add Meeting Alert"
+      },
+      {
+        "command": "reminder.showStatus",
+        "title": "💊 Open Health Sidebar"
+      }
+    ],
+    "configuration": {
+      "title": "Health Reminder Settings",
+      "properties": {
+        "healthReminder.teaBreakInterval": {
+          "type": "number",
+          "default": 60,
+          "description": "Tea break interval (minutes)"
+        },
+        "healthReminder.waterInterval": {
+          "type": "number",
+          "default": 30,
+          "description": "Water reminder interval (minutes)"
+        },
+        "healthReminder.stretchInterval": {
+          "type": "number",
+          "default": 90,
+          "description": "Stretch reminder interval (minutes)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/node-fetch": "^2.6.13",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^2.19.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@azure/msal-node": "^5.0.6",
+    "node-fetch": "^3.3.2"
+  }
+}
